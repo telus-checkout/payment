@@ -317,10 +317,24 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 				  </div></br>
 				  <div class="item">
 					<label>
-					  <span>Expiry Date
-					</span><br><br>
-					  <input type="month" id="expiryDate" name="expiryDate" required>
-					</label>
+						<span>Expiry Date</span><br><br>
+						<input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" required 
+							   pattern="(0[1-9]|1[0-2])\/\d{2}" 
+							   maxlength="5" 
+							   oninput="formatExpiryDate(this)">
+					  </label>
+					  
+					  <script>
+						function formatExpiryDate(input) {
+						  let value = input.value.replace(/\D/g, ''); // Remove non-numeric characters
+						  if (value.length > 2) {
+							input.value = value.slice(0, 2) + '/' + value.slice(2, 4);
+						  } else {
+							input.value = value;
+						  }
+						}
+					  </script>
+					  
 				  </div></br>
 				  <div class="item">
 					<label>
